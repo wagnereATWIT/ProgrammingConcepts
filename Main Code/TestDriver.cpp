@@ -1,7 +1,13 @@
 #include <iostream> 
-#include <sqlite3.h> 
 #include <string> 
+#include <sqlite3.h> 
 #include <stdio.h>
+#include "User.h"
+#include "Student.h"
+#include "Instructor.h"
+#include "Admin.h" 
+#include "Course.h"
+#include "Course.cpp" 
 
 using namespace std;
 
@@ -61,7 +67,7 @@ int main(int argc, char** argv)
         "FIRST_NAME TEXT NOT NULL, "
         "LAST_NAME TEXT NOT NULL, "
         "ID INTEGER PRIMARY KEY, "
-        "GPA REAL NOT NULL, ";
+        "GPA REAL NOT NULL); ";
         
      exit = 0;
 
@@ -86,7 +92,7 @@ int main(int argc, char** argv)
         "FIRST_NAME TEXT NOT NULL, "
         "LAST_NAME TEXT NOT NULL, "
         "ID INTEGER PRIMARY KEY, "
-        "DEPARTMENT TEXT NOT NULL, ";
+        "DEPARTMENT TEXT NOT NULL); ";
         
     exit = 0;
 
@@ -111,7 +117,7 @@ int main(int argc, char** argv)
         "FIRST_NAME TEXT NOT NULL, "
         "LAST_NAME TEXT NOT NULL, "
         "ID INTEGER PRIMARY KEY, "
-        "OFFICE TEXT NOT NULL, ";
+        "OFFICE TEXT NOT NULL); ";
 
     exit = 0;
 
@@ -131,17 +137,33 @@ int main(int argc, char** argv)
         cout << "Table created Successfully" << std::endl;
 
 
-    // add courses into database
-    string course_insert("INSERT INTO COURSE VALUES(13205, 'NETWORK THEORY I', 'BSEE', 'TR', 8, 9, 'M', 12, 2, 'FALL', 2021, 4);"
-        "INSERT INTO COURSE VALUES(13206, 'NETWORK THEORY Ii', 'BSEE', 'WF', 10, 11, , , , 'FALL', 2021, 4);"
-//        "INSERT INTO COURSE VALUES(13778, 'ENVIORNMENTAL ENGINEERING', 'BSCE', '8:00AM-9:20AM', 'TRF', 'FALL', 2021, 4);"
-//        "INSERT INTO COURSE VALUES(32401, 'COMPUTER ARCHITECTURE', 'BSCO', '5:30PM-8:30PM', 'R', 'SUMMER', 2021, 3);"
-//        "INSERT INTO COURSE VALUES(32380, 'ELECTROMAGNETIC FIELD THEORY', 'BSME',  '9:30AM-10:50AM', 'WF', 'SUMMER', 2021, 3);"
+    // add courses into database and objects
+    int courseID = 50200;
+    int lecStart = 8;
+    int lecEnd = 9;
+    int labStart = 12;
+    int labEnd = 2;
+    int courseYear = 2021;
+    int courseCredits = 4;
+    string courseTitle = "NETWORK THEORY I";
+    string courseMajor = "BSEE";
+    string lecDays = "TR";
+    string labDays = "M";
+    string courseSem = "FALL";
+    
+    string courseID_S = to_string(courseID);
+    string lecStart_S = to_string(lecStart);
+    string lecEnd_S  = to_string(lecEnd);
+    string labStart_S = to_string(labStart);
+    string labEnd_S = to_string(labEnd);
+    string courseYear_S = to_string(courseYear);
+    string courseCredits_S = to_string(courseCredits);
 
-    );
+
+    string courseInsert("INSERT INTO COURSE VALUES(" + courseID_S + ",'" + courseTitle + "','" + courseMajor + "','" + lecDays + "'," + lecStart_S + "," + lecEnd_S + ",'" + labDays + "'," + labStart_S + "," + labEnd_S + ",'" + courseSem + "'," + courseYear_S + "," + courseCredits_S + ");");
 
     // execute the command
-    exit = sqlite3_exec(DB, course_insert.c_str(), NULL, 0, &messageError);
+    exit = sqlite3_exec(DB, courseInsert.c_str(), NULL, 0, &messageError);
 
     if (exit != SQLITE_OK)
     {
@@ -150,6 +172,10 @@ int main(int argc, char** argv)
     }
     else
         std::cout << "Records created Successfully!" << std::endl;
+        
+     //Create object for course   
+    Course netTheoryI(courseID, courseTitle, courseMajor, lecDays, lecStart, lecEnd, labDays, labStart, labEnd, courseSem, courseYear, courseCredits);
+    cout << endl << "Network Theory I Code: " << netTheoryI.getCode() << endl;
 //        
 //    //Print courses
 //    string query = "SELECT * FROM COURSE;";
