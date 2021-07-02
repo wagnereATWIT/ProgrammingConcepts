@@ -28,9 +28,12 @@ int main(int argc, char** argv)
         "CRN INTEGER PRIMARY KEY, "
         "TITLE TEXT NOT NULL, "
         "DEPARTMENT TEXT NOT NULL, "
-        "LECTURE_1 TEXT NOT NULL, "
-        "LECTURE_2 TEXT NOT NULL, "
-        "LAB TEXT,"
+        "LECTURE_DAYS TEXT NOT NULL, "
+        "LECTURE_START INTEGER NOT NULL, "
+        "LECTURE_END INTEGER NOT NULL, "
+        "LAB_DAYS TEXT,"
+        "LAB_START INTEGER, "
+        "LAB_END INTEGER, "
         "SEMESTER TEXT NOT NULL, "
         "YEAR INTEGER NOT NULL,"
         "CREDITS INTEGER NOT NULL); ";
@@ -60,11 +63,11 @@ int main(int argc, char** argv)
         "ID INTEGER PRIMARY KEY, "
         "GPA REAL NOT NULL, ";
         
-     int exit = 0;
+     exit = 0;
 
     exit = sqlite3_open("SystemDatabase.db", &DB);			//open the database
 
-    char* messageError;
+    messageError;
 
     // execute the create table command
     exit = sqlite3_exec(DB, student.c_str(), NULL, 0, &messageError);
@@ -85,11 +88,11 @@ int main(int argc, char** argv)
         "ID INTEGER PRIMARY KEY, "
         "DEPARTMENT TEXT NOT NULL, ";
         
-     int exit = 0;
+    exit = 0;
 
     exit = sqlite3_open("SystemDatabase.db", &DB);			//open the database
 
-    char* messageError;
+    messageError;
 
     // execute the create table command
     exit = sqlite3_exec(DB, instructor.c_str(), NULL, 0, &messageError);
@@ -110,11 +113,11 @@ int main(int argc, char** argv)
         "ID INTEGER PRIMARY KEY, "
         "OFFICE TEXT NOT NULL, ";
 
-    int exit = 0;
+    exit = 0;
 
     exit = sqlite3_open("SystemDatabase.db", &DB);			//open the database
 
-    char* messageError;
+    messageError;
 
     // execute the create table command
     exit = sqlite3_exec(DB, admin.c_str(), NULL, 0, &messageError);
@@ -128,25 +131,25 @@ int main(int argc, char** argv)
         cout << "Table created Successfully" << std::endl;
 
 
-//    // add values into database
-//    string course_insert("INSERT INTO COURSE VALUES(13205, 'NETWORK THEORY I', 'BSEE', '12:20PM-1:50PM', 'TR', 'FALL', 2021, 4);"
-//        "INSERT INTO COURSE VALUES(14887, 'SIGNALS AND SYSTEMS', 'BSEE', '9:30AM-10:50AM', 'MW', 'FALL', 2021, 4);"
+    // add courses into database
+    string course_insert("INSERT INTO COURSE VALUES(13205, 'NETWORK THEORY I', 'BSEE', 'TR', 8, 9, 'M', 12, 2, 'FALL', 2021, 4);"
+        "INSERT INTO COURSE VALUES(13206, 'NETWORK THEORY Ii', 'BSEE', 'WF', 10, 11, , , , 'FALL', 2021, 4);"
 //        "INSERT INTO COURSE VALUES(13778, 'ENVIORNMENTAL ENGINEERING', 'BSCE', '8:00AM-9:20AM', 'TRF', 'FALL', 2021, 4);"
 //        "INSERT INTO COURSE VALUES(32401, 'COMPUTER ARCHITECTURE', 'BSCO', '5:30PM-8:30PM', 'R', 'SUMMER', 2021, 3);"
 //        "INSERT INTO COURSE VALUES(32380, 'ELECTROMAGNETIC FIELD THEORY', 'BSME',  '9:30AM-10:50AM', 'WF', 'SUMMER', 2021, 3);"
-//
-//    );
-//
-//    // execute the command
-//    exit = sqlite3_exec(DB, course_insert.c_str(), NULL, 0, &messageError);
-//
-//    if (exit != SQLITE_OK)
-//    {
-//        std::cerr << "Error Insert" << std::endl;
-//        sqlite3_free(messageError);
-//    }
-//    else
-//        std::cout << "Records created Successfully!" << std::endl;
+
+    );
+
+    // execute the command
+    exit = sqlite3_exec(DB, course_insert.c_str(), NULL, 0, &messageError);
+
+    if (exit != SQLITE_OK)
+    {
+        std::cerr << "Error Insert" << std::endl;
+        sqlite3_free(messageError);
+    }
+    else
+        std::cout << "Records created Successfully!" << std::endl;
 //        
 //    //Print courses
 //    string query = "SELECT * FROM COURSE;";
@@ -221,8 +224,8 @@ int main(int argc, char** argv)
 //    sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
 //    
 //    //Flag professors that can teach the courses
-//    string flagProf = "SELECT COURSE.TITLE, INSTRUCTOR. NAME, INSTRUCTOR.SURNAME FROM COURSE, INSTRUCTOR WHERE INSTRUCTOR.DEPT = COURSE.DEPT;";
-//    cout << endl << "Courses Matched with instructors" << endl;
+//    string flagProf = "SELECT COURSE.TITLE, COURSE.LECTURE_DAYS, COURSE.LECTURE_START, COURSE.LECTURE_END, COURSE.LAB_DAYS, COURSE.LAB_START, COURSE.LAB_END FROM COURSE WHERE INSTRUCTOR.DEPT = COURSE.DEPT;";
+//    cout << endl << "Roster: " << endl;
 //    sqlite3_exec(DB, flagProf.c_str(), callback, NULL, NULL);
 
     return 0;
