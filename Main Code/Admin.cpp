@@ -1,12 +1,16 @@
 //Admin.cpp
 #include "User.h"
+#include "User.cpp"
 #include "Admin.h"
-#include <iostream>
-#include <sstream>
+#include "Functions.h"
+#include "Functions.cpp"
+#include <vector>
 #include <string>
+#include <iostream> 
+#include <sqlite3.h> 
+#include <stdio.h>
 
 using namespace std;
-int main(){}
 //CONSTRUCTOR
 Admin::Admin(string fName, string lName, int ID, string office)
 	:User{ fName, lName, ID }
@@ -38,7 +42,63 @@ string Admin::getOffice() const
 
 void Admin::addRemoveCourse()
 {
-	cout << "Add/Remove course function called" << endl;
+  sqlite3* DB;
+  int exit = 0;
+  exit = sqlite3_open("SystemDatabase.db", &DB);			//open the database
+  char* messageError;
+	char choice;
+ string courseID;
+  int cID;
+  string cTitle;
+  string cMajor;
+  string lecD;
+  int lecS;
+  int lecE;
+  string labD;
+  int labS;
+  int labE;
+  string cSem;
+  int cYear;
+  int cCredits;
+
+	cout << "Would you like to add or drop a course?: " << endl
+		<< "a - add" << endl
+		<< "b - drop" << endl;
+	cin >> choice; 
+	if (choice == 'a') {
+    cout << endl << "Enter the following info for the class you would like to add "; cin >> cID;
+		cout << endl << "CRN: "; cin >> cID;
+    cout << endl <<"Title: "; cin >> cTitle;
+    cout << endl << "Major (four letter): "; cin >> cMajor;
+    cout << endl << "Lecture days (single letter): "; cin >> lecD;
+    cout << endl << "Lecture start time: "; cin >> lecS;
+    cout << endl << "Lecture end time: "; cin >> lecE;
+    cout << endl << "Lab days (single letter): "; cin >> labD;
+    cout << endl << "Lab start time: "; cin >> labS;
+    cout << endl << "Lab end time: "; cin >> labE;
+    cout << endl << "Semester: "; cin >> cSem;
+    cout << endl << "Year: "; cin >> cYear;
+    cout << endl << "Credits: "; cin >> cCredits;
+    
+    //Create course object and database entry
+    courseCreation(mainCourseList, cID, cTitle, cMajor, lecD, lecS, lecE, labD, labS, labE, cSem, cYear, cCredits);
+   
+
+	}
+	else if (choice == 'b'){
+	  cout << "Enter CRN of class you would like to remove: "; cin >> courseID;
+    string deleteC1 = "DELETE FROM COURSE WHERE CRN = ";
+    string deleteC = deleteC1 + courseID;
+    exit = sqlite3_exec(DB, deleteC.c_str(), callback, NULL, &messageError);
+    
+     if (exit != SQLITE_OK)
+    {
+        std::cerr << "Error Removal" << std::endl;
+        sqlite3_free(messageError);
+    }
+    else
+        std::cout << "Records removed Successfully!" << std::endl;
+	}
 }
 
 void Admin::addRemoveUser()
