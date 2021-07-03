@@ -1,3 +1,4 @@
+//Created by Kaycee Salgueiro
 //Student.cpp
 
 #include "Student.h"
@@ -22,6 +23,7 @@ string Student::toString() const
 	return output.str();
 }
 
+//Created by Andy Wagner
 void Student::addDropCourse()
 {
 	vector<Course*> Schedule;
