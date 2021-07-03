@@ -1,3 +1,4 @@
+//Created by Kaycee Salgueiro
 //Course.h
 #include <string>
 #ifndef COURSE_H
