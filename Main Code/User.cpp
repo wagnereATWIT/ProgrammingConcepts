@@ -1,3 +1,4 @@
+//Created by Andy Wagner
 // User.cpp
 
 #include "User.h"
