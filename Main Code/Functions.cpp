@@ -1,3 +1,4 @@
+//Created by Andy Wager
 #include "Functions.h"
 #include <vector>
 #include <string>
@@ -26,6 +27,7 @@ int callback(void* data, int argc, char** argv, char** azColName) {
 	return 0;
 }
 
+//Created by Kaycee Salgueiro
 void courseCreation(vector<Course*> &list, int ID, string title, string major, string lecD, int lecS, int lecE, string labD, int labS, int labE, string semester, int year, int credits){
   sqlite3* DB;
   int exit = 0;
