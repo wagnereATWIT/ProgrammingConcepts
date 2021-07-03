@@ -1,8 +1,8 @@
+//Created by Kaycee Salgueiro
 #include <iostream>
 #include<sstream>
 #include<string>
 #include "Course.h"
-#include "Schedule.h"
 
 using namespace std;
 
