@@ -1,3 +1,4 @@
+//Created by Andy Wagner
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
