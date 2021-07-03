@@ -1,3 +1,4 @@
+//Created by Kaycee Salgueiro
 #include <iostream> 
 #include <string> 
 #include <sqlite3.h> 
@@ -129,97 +130,21 @@ int main(int argc, char** argv)
 	cout << "-----Log in-----" << endl;
 	User_ID = login(DB);
 
+    //Testing Student Add/Drop course
+    Student testStud{"Andy", "Wagner", 10500, 3.70};
+    testStud.addDropCourse();
+
     //Testing Instructor print roster
-    vector<Instructor*> testInst;
-    testInst.push_back(new Instructor("Kaycee", "Salgueiro", 20700, "BSEE");
-    testInst[0]->printRoster();
+    Instructor testInst{"Kaycee", "Salgueiro", 20500, "BSEE"};
+    testInst.printRoster();
     
     //Testing Admin Add/Remove course
-    vector<Admin*> testAdmin;
-    testAdmin.push_back(new Admin("Andy", "Wagner", 30500, "WENTW 001");
-    testAdmin[0]->addRemoveCourse();
-
-//        
-//    //Print courses
-//    string query = "SELECT * FROM COURSE;";
-//    cout << endl << query << endl;		//print the string to screen
-//    sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
-//    
-//    //Print student (all and single)
-//    query = "SELECT * FROM STUDENT;";
-//    cout << endl << query << endl;		//print the string to screen
-//    sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
-//
-//    string student_idp;
-//    cout << "Print single student" << endl;
-//    cout << "Enter student ID: ";
-//    cin >> student_idp;
-//
-//    string printS1 = "SELECT * FROM STUDENT WHERE ID = ";
-//    string printS = printS1 + student_idp;
-//    exit = sqlite3_exec(DB, printS.c_str(), callback, NULL, &messageError);
-//
-//    //Add student 1
-//    string id, fname, lname, gradyear, major, email;
-//    cout << "Add student" << endl;
-//    cout << "Enter ID, first name, last name, expected graduation year, major, and email: ";
-//    cin >> id >> fname >> lname >> gradyear >> major >> email;
-//
-//    string userInput("INSERT INTO STUDENT VALUES(" + id + ",'" + fname + "','" + lname + "'," + gradyear + ",'" + major + "','" + email + "');"
-//    );
-//    exit = sqlite3_exec(DB, userInput.c_str(), callback, NULL, NULL);
-//
-//    //Add student 2
-//    cout << "Add student" << endl;
-//    cout << "Enter ID, first name, last name, expected graduation year, major, and email: ";
-//    cin >> id >> fname >> lname >> gradyear >> major >> email;
-//
-//    string userInput2("INSERT INTO STUDENT VALUES(" + id + ",'" + fname + "','" + lname + "'," + gradyear + ",'" + major + "','" + email + "');"
-//    );
-//    exit = sqlite3_exec(DB, userInput2.c_str(), callback, NULL, NULL);
-//
-//    query = "SELECT * FROM STUDENT;";
-//    cout << endl << query << endl;		//print the string to screen
-//    sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
-//
-//    //Delete Instructor
-//    query = "SELECT * FROM INSTRUCTOR;";
-//    cout << endl << query << endl;		//print the string to screen
-//    sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
-//    string instructor_idd;
-//    cout << "Delete instructor" << endl;
-//    cout << "Enter instructor ID: ";
-//    cin >> instructor_idd;
-//
-//    string deleteI1 = "DELETE FROM INSTRUCTOR WHERE ID = ";
-//    string deleteI = deleteI1 + instructor_idd;
-//    exit = sqlite3_exec(DB, deleteI.c_str(), callback, NULL, &messageError);
-//
-//    query = "SELECT * FROM INSTRUCTOR;";
-//    cout << endl << query << endl;		//print the string to screen
-//    sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
-//    
-//    //Edit Admin
-//    query = "SELECT * FROM ADMIN;";
-//    cout << endl << query << endl;		//print the string to screen
-//    sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
-//    
-//    string updateA = "UPDATE ADMIN SET TITLE = 'Vice-President' WHERE ID = 30002;";
-//    cout << endl << updateA << endl;		//print the string to screen
-//    exit = sqlite3_exec(DB, updateA.c_str(), callback, NULL, &messageError);
-//    
-//    query = "SELECT * FROM ADMIN;";
-//    cout << endl << query << endl;		//print the string to screen
-//    sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
-//    
-//    //Flag professors that can teach the courses
-//    string flagProf = "SELECT COURSE.TITLE, COURSE.LECTURE_DAYS, COURSE.LECTURE_START, COURSE.LECTURE_END, COURSE.LAB_DAYS, COURSE.LAB_START, COURSE.LAB_END FROM COURSE WHERE INSTRUCTOR.DEPT = COURSE.DEPT;";
-//    cout << endl << "Roster: " << endl;
-//    sqlite3_exec(DB, flagProf.c_str(), callback, NULL, NULL);
+    Admin testAd{"Kaycee", "Salgueiro", 20500, "WENTW 001"};
+    testAd.addRemoveCourse();
 
     return 0;
 }
-
+//Created by Andy Wager
 string login(sqlite3* DB) {
 	char* messageError;
 	string UN;
