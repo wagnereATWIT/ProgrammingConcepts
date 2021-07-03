@@ -124,11 +124,13 @@ int main(int argc, char** argv)
         std::cerr << "Error Create Table" << std::endl;
         sqlite3_free(messageError);
     }
-    else
+    else {
         cout << "Table created Successfully" << std::endl;
-		
-	cout << "-----Log in-----" << endl;
-	User_ID = login(DB);
+    }
+	
+    cout << "-----Log in-----" << endl;
+    User_ID = login(DB);
+	
 
     //Testing Student Add/Drop course
     Student testStud{"Andy", "Wagner", 10500, 3.70};
