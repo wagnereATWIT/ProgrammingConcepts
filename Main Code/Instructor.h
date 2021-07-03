@@ -1,3 +1,4 @@
+//Created by Kaycee Salgueiro
 //Instructor.h
 #include <string>
 #ifndef INSTRUCTOR_H
