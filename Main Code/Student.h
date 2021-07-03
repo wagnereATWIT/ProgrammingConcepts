@@ -1,3 +1,4 @@
+//Created by Kaycee Salgueiro
 //Student.h
 #include <string>
 #ifndef STUDENT_H
