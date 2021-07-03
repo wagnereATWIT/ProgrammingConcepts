@@ -5,7 +5,7 @@
 #include "Schedule.h"
 
 using namespace std;
-int main(){}
+
 // CONSTRUCTOR
 Course::Course(int CRN, const string& courseName, const string& department, const string& lecDays, int lecStart, int lecEnd, const string& labDays, int labStart, int labEnd, const string& semester, int year, int credits)
 	: courseCode{ CRN }, nameOfCourse{ courseName }, nameOfDepartment{ department },

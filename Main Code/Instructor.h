@@ -14,7 +14,7 @@ public:
 	void setSchool(std::string);
 	std::string getSchool() const;
 	void searchCourse();
-	void printRoster() const;
+	void printRoster();
 	void printSchedule() const;
 
 	//DESTRUCTOR

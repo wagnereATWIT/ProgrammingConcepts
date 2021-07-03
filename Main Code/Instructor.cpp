@@ -1,28 +1,15 @@
 //Instructor.cpp
 #include "User.h"
+#include "User.cpp"
 #include "Instructor.h"
+#include "Functions.h"
+#include "Functions.cpp"
 #include <sqlite3.h> 
 #include <iostream>
 #include <string> 
 #include <stdio.h>
 
 using namespace std;
-
-static int callback(void* data, int argc, char** argv, char** azColName)
-{
-    int i;
-
-    for (i = 0; i < argc; i++)
-    {
-        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-    }
-
-    printf("\n");
-
-    return 0;
-}
-
-int main(int argc, char** argv){}
 
 //CONSTRUCTOR
 Instructor::Instructor(string fName, string lName, int ID, string school)
@@ -47,11 +34,15 @@ void Instructor::searchCourse()
 	cout << "Search course function called" << endl;
 }
 
-void Instructor::printRoster() const
+void Instructor::printRoster()
 {
   sqlite3* DB;
+  string department;
+  cout << endl << "Enter your four-letter department name: " << endl;
+  cin >> department;
 	//Flag professors that can teach the courses
-  string flagProf = "SELECT COURSE.TITLE, COURSE.LECTURE_DAYS, COURSE.LECTURE_START, COURSE.LECTURE_END, COURSE.LAB_DAYS, COURSE.LAB_START, COURSE.LAB_END FROM COURSE WHERE INSTRUCTOR.DEPT = COURSE.DEPT;";
+  string flagProf_1 = "SELECT COURSE.TITLE, COURSE.LECTURE_DAYS, COURSE.LECTURE_START, COURSE.LECTURE_END, COURSE.LAB_DAYS, COURSE.LAB_START, COURSE.LAB_END FROM COURSE WHERE COURSE.DEPT = ";
+  string flagProf = flagProf_1 + department;
   cout << endl << "Roster: " << endl;
   sqlite3_exec(DB, flagProf.c_str(), callback, NULL, NULL);
 }

@@ -4,7 +4,6 @@
 #include "User.h"
 
 using namespace std;
-int main(){}
 //CONSTRUCTOR
 User::User(string fName, string lName, int ID)
 	:firstName{ fName }, lastName{ lName }, userID{ ID }

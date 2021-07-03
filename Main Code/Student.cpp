@@ -1,12 +1,13 @@
 //Student.cpp
 #include "User.h"
 #include "Student.h"
+#include "Functions.h"
+#include "Functions.cpp"
 #include <iostream>
 #include <sstream>
 #include <string>
 
 using namespace std;
-int main(){}
 //CONSTRUCTOR
 Student::Student(string fName, string lName, int ID, double gpa)
 	:User{ fName, lName, ID }
@@ -43,7 +44,22 @@ void Student::searchCourse()
 
 void Student::addDropCourse()
 {
-	cout << "Add/Drop course function called" << endl;
+  vector<Course*> Schedule;
+	char choice;
+	int CRN_C;
+
+	cout << "Would you like to add or drop a course?: " << endl
+		<< "a - add" << endl
+		<< "b - drop" << endl;
+	cin >> choice; 
+	if (choice == 'a') {
+		cout << "Enter CRN of class you would like to add: "; cin >> CRN_C;
+
+	}
+	else if (choice == 'b'){
+		cout << "Enter CRN of class you would like to remove: "; cin >> CRN_C;
+	}
+
 }
 
 void Student::printSchedule() const

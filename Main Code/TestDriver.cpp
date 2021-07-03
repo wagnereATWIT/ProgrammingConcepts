@@ -2,28 +2,18 @@
 #include <string> 
 #include <sqlite3.h> 
 #include <stdio.h>
+#include <vector>
 #include "User.h"
-#include "Student.h"
+//#include "User.cpp"
+//#include "Student.h"
+//#include "Student.cpp"
 #include "Instructor.h"
-#include "Admin.h" 
-#include "Course.h"
-#include "Course.cpp" 
+#include "Instructor.cpp"
+//#include "Admin.h"
+//#include "Admin.cpp" 
 
 using namespace std;
 
-static int callback(void* data, int argc, char** argv, char** azColName)
-{
-    int i;
-
-    for (i = 0; i < argc; i++)
-    {
-        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-    }
-
-    printf("\n");
-
-    return 0;
-}
 
 int main(int argc, char** argv)
 {
@@ -136,46 +126,16 @@ int main(int argc, char** argv)
     else
         cout << "Table created Successfully" << std::endl;
 
-
-    // add courses into database and objects
-    int courseID = 50200;
-    int lecStart = 8;
-    int lecEnd = 9;
-    int labStart = 12;
-    int labEnd = 2;
-    int courseYear = 2021;
-    int courseCredits = 4;
-    string courseTitle = "NETWORK THEORY I";
-    string courseMajor = "BSEE";
-    string lecDays = "TR";
-    string labDays = "M";
-    string courseSem = "FALL";
+    //Testing Instructor print roster
+    vector<Instructor*> testInst;
+    testInst.push_back(new Instructor("Kaycee", "Salgueiro", 20700, "BSEE");
+    testInst[0]->printRoster();
     
-    string courseID_S = to_string(courseID);
-    string lecStart_S = to_string(lecStart);
-    string lecEnd_S  = to_string(lecEnd);
-    string labStart_S = to_string(labStart);
-    string labEnd_S = to_string(labEnd);
-    string courseYear_S = to_string(courseYear);
-    string courseCredits_S = to_string(courseCredits);
+    //Testing Admin Add/Remove course
+    vector<Admin*> testAdmin;
+    testAdmin.push_back(new Admin("Andy", "Wagner", 30500, "WENTW 001");
+    testAdmin[0]->addRemoveCourse();
 
-
-    string courseInsert("INSERT INTO COURSE VALUES(" + courseID_S + ",'" + courseTitle + "','" + courseMajor + "','" + lecDays + "'," + lecStart_S + "," + lecEnd_S + ",'" + labDays + "'," + labStart_S + "," + labEnd_S + ",'" + courseSem + "'," + courseYear_S + "," + courseCredits_S + ");");
-
-    // execute the command
-    exit = sqlite3_exec(DB, courseInsert.c_str(), NULL, 0, &messageError);
-
-    if (exit != SQLITE_OK)
-    {
-        std::cerr << "Error Insert" << std::endl;
-        sqlite3_free(messageError);
-    }
-    else
-        std::cout << "Records created Successfully!" << std::endl;
-        
-     //Create object for course   
-    Course netTheoryI(courseID, courseTitle, courseMajor, lecDays, lecStart, lecEnd, labDays, labStart, labEnd, courseSem, courseYear, courseCredits);
-    cout << endl << "Network Theory I Code: " << netTheoryI.getCode() << endl;
 //        
 //    //Print courses
 //    string query = "SELECT * FROM COURSE;";

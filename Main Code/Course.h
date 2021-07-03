@@ -1,6 +1,5 @@
 //Course.h
 #include <string>
-#include "Schedule.h"
 #ifndef COURSE_H
 #define COURSE_H
 
