@@ -1,5 +1,6 @@
 //Instructor.cpp
 #include "Instructor.h"
+#include "Functions.h"
 using namespace std;
 
 //CONSTRUCTOR
@@ -21,9 +22,16 @@ string Instructor::toString() const
 	return output.str();
 }
 
-void Instructor::printRoster() const
+void Instructor::printRoster(sqlite3* DB)
 {
-	cout << "Print class list function called" << endl;
+	string department;
+	cout << endl << "Enter your four-letter department name: ";
+	cin >> department;
+	//Flag professors that can teach the courses
+	string flagProf_1 = "SELECT COURSE.TITLE, COURSE.LECTURE_DAYS, COURSE.LECTURE_START, COURSE.LECTURE_END, COURSE.LAB_DAYS, COURSE.LAB_START, COURSE.LAB_END FROM COURSE WHERE COURSE.DEPARTMENT = ";
+	string flagProf = flagProf_1 + '"' + department + '"';
+	cout << endl << "Roster: " << endl;
+	sqlite3_exec(DB, flagProf.c_str(), callback, NULL, NULL);
 }
 
 void Instructor::printSchedule() const
