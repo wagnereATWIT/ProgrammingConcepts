@@ -1,4 +1,3 @@
-
 #include "Functions.h"
 using namespace std;
 
@@ -42,34 +41,34 @@ void StudentDB(sqlite3* DB) {
 
 	exit = sqlite3_exec(DB, student.c_str(), NULL, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10001','Isaac','Newton','4.0')";
+	Q1 = "INSERT INTO STUDENT VALUES (10001, 'Isaac', 'Newton', 4.0)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10002','Marie','Curie','3.9')";
+	Q1 = "INSERT INTO STUDENT VALUES (10002, 'Marie', 'Curie', 3.9)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10003','Nikola','Tesla','3.8')";
+	Q1 = "INSERT INTO STUDENT VALUES (10003, 'Nikola', 'Tesla', 3.8)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10004','Thomas','Edison','3.7')";
+	Q1 = "INSERT INTO STUDENT VALUES (10004, 'Thomas', 'Edison', 3.7)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10005','Jon','Neumann','3.6')";
+	Q1 = "INSERT INTO STUDENT VALUES (10005, 'Jon', 'Neumann', 3.6)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10006','Grace','Hopper','3.5')";
+	Q1 = "INSERT INTO STUDENT VALUES (10006, 'Grace', 'Hopper', 3.5)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10007','Mae','Jemison','3.4')";
+	Q1 = "INSERT INTO STUDENT VALUES (10007, 'Mae', 'Jemison', 3.4)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10008','Mark','Dean','3.3')";
+	Q1 = "INSERT INTO STUDENT VALUES (10008, 'Mark', 'Dean', 3.3)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10009','Michael','Faraday','3.2')";
+	Q1 = "INSERT INTO STUDENT VALUES (10009, 'Michael', 'Faraday', 3.2)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO STUDENT VALUES ('10010','Ada','Lovelace','4.0')";
+	Q1 = "INSERT INTO STUDENT VALUES (10010, 'Ada', 'Lovelace', 4.0)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 }
 
@@ -86,19 +85,19 @@ void InstructorDB(sqlite3* DB) {
 
 	exit = sqlite3_exec(DB, instructor.c_str(), NULL, 0, &messageError);
 
-	Q1 = "INSERT INTO INSTRUCTOR VALUES ('20001','Joseph','Fourier','BSME')";
+	Q1 = "INSERT INTO INSTRUCTOR VALUES (20001, 'Joseph', 'Fourier', 'BSME')";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO INSTRUCTOR VALUES ('20002','Nelson','Patrick','BSCE')";
+	Q1 = "INSERT INTO INSTRUCTOR VALUES (20002, 'Nelson', 'Patrick', 'BSCE')";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO INSTRUCTOR VALUES ('20003','Galileo','Galilei','BSEE')";
+	Q1 = "INSERT INTO INSTRUCTOR VALUES (20003, 'Galileo', 'Galilei', 'BSEE')";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO INSTRUCTOR VALUES ('20004','Alan','Turing','BSCO')";
+	Q1 = "INSERT INTO INSTRUCTOR VALUES (20004, 'Alan', 'Turing', 'BSCO')";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO INSTRUCTOR VALUES ('20005','Daniel','Bernoulli','BSEE')";
+	Q1 = "INSERT INTO INSTRUCTOR VALUES (20005, 'Daniel', 'Bernoulli', 'BSEE')";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
 }
@@ -116,10 +115,10 @@ void AdminDB(sqlite3* DB) {
 
 	exit = sqlite3_exec(DB, admin.c_str(), NULL, 0, &messageError);
 
-	Q1 = "INSERT INTO ADMIN VALUES ('30001','Margaret','Hamilton','DOBBS 302')";
+	Q1 = "INSERT INTO ADMIN VALUES (30001, 'Margaret', 'Hamilton', 'DOBBS 302')";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO ADMIN VALUES ('30002','Vera','Rubin','BEATTY 501')";
+	Q1 = "INSERT INTO ADMIN VALUES (30002, 'Vera', 'Rubin', 'BEATTY 501')";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
 }
@@ -145,19 +144,19 @@ void CourseDB(sqlite3* DB) {
 
 	exit = sqlite3_exec(DB, course.c_str(), NULL, 0, &messageError);
 
-	Q1 = "INSERT INTO COURSE VALUES ('13205','Network Theory I','BSEE','MW', '8:00','9:20','F','10:00','12:00','Fall','2021','4')";
+	Q1 = "INSERT INTO COURSE VALUES (13205, 'Network Theory I', 'BSEE', 'MW', 8, 9, 'F', 10, 12, 'Fall', 2021, 4)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO COURSE VALUES ('13778','Environmental Engineering','BSCE','TR', '8:00','9:20','F','10:00','12:00','Fall','2021','4')";
+	Q1 = "INSERT INTO COURSE VALUES (13778, 'Environmental Engineering', 'BSCE', 'TR', 8, 9, 'F', 10, 12, 'Fall', 2021, 4)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO COURSE VALUES ('14887','Signal and Systems','BSEE','TR', '12:00','1:20','M','10:00','12:00','Fall','2021','4')";
+	Q1 = "INSERT INTO COURSE VALUES (14887, 'Signal and Systems', 'BSEE', 'TR', 12, 1, 'M', 10, 12, 'Fall', 2021, 4)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO COURSE VALUES ('32380','Electromagnetic Field Theory','BSME','MW', '9:00','10:20','F','5:00','7:00','Fall','2021','4')";
+	Q1 = "INSERT INTO COURSE VALUES (32380, 'Electromagnetic Field Theory', 'BSME', 'MW', 9, 10, 'F', 5, 7,'Fall', 2021, 4)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 
-	Q1 = "INSERT INTO COURSE VALUES ('32401','Computer Architecture','BSCO','WF', '2:00','3:20','F','4:00','6:00','Fall','2021','4')";
+	Q1 = "INSERT INTO COURSE VALUES (32401, 'Computer Architecture', 'BSCO', 'WF', 2, 3, 'F', 4, 6, 'Fall', 2021, 4)";
 	exit = sqlite3_exec(DB, Q1.c_str(), callback, 0, &messageError);
 }
 
