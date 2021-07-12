@@ -18,7 +18,7 @@ public:
 	virtual std::string toString() const;
 	void setSchool(std::string);
 	std::string getSchool() const;
-	void printRoster() const;
+	void printRoster(sqlite3*);
 	void printSchedule() const;
 
 	//DESTRUCTOR
