@@ -18,7 +18,7 @@ public:
 	virtual std::string toString() const;
 	void setOffice(std::string);
 	std::string getOffice() const;
-	void addRemoveCourse();
+	void addRemoveCourse(sqlite3*);
 	void addRemoveUser();
 	void addRemoveStudCourse();
 	void searchRoster();
