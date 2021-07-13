@@ -15,9 +15,9 @@ using namespace std;
 
 string login(sqlite3*, std::vector<std::string>);
 
-void menu_instructor(Instructor &I, sqlite3*);
-void menu_admin(Admin &A, sqlite3*);
-void menu_student(Student &S, sqlite3*);
+void menu_instructor(Instructor& I, sqlite3*);
+void menu_admin(Admin& A, sqlite3*);
+void menu_student(Student& S, sqlite3*);
 
 Student create_student(sqlite3*, std::vector<std::string>, string);
 Instructor create_instructor(sqlite3*, std::vector<std::string>, string);
@@ -32,13 +32,13 @@ int main(int argc, char** argv) {
 	string User_ID;
 
 	sqlite3* DB;
-	
+
 	sqlite3_open("SystemDatabase.db", &DB);
 
 	StudentDB(DB);
 	InstructorDB(DB);
 	AdminDB(DB);
-	CourseDB(DB); 
+	CourseDB(DB);
 
 	cout << "-----Log in-----" << endl;
 	User_ID = login(DB, container);
@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
 		menu_admin(A, DB);											// open admin menu
 	}
 
-    return 0;
+	return 0;
 }
 
 string login(sqlite3* DB, std::vector<std::string> container) {
@@ -108,7 +108,7 @@ Student create_student(sqlite3* DB, std::vector<std::string> container, string I
 	int user_id;
 
 	string Q1; string Q2; string exit;
-	
+
 	Q1 = "SELECT FIRST_NAME FROM STUDENT WHERE ID = ";
 	Q2 = Q1 + ID;
 	exit = sqlite3_exec(DB, Q2.c_str(), callback_store, &container, NULL);
@@ -128,12 +128,12 @@ Student create_student(sqlite3* DB, std::vector<std::string> container, string I
 	stringstream T(ID);
 	T >> user_id;
 
-	Student temp(first_name, last_name, user_id, gpa); 
+	Student temp(first_name, last_name, user_id, gpa);
 
 	return temp;
 }
 
-Instructor create_instructor(sqlite3* DB, std::vector<std::string> container, string ID){
+Instructor create_instructor(sqlite3* DB, std::vector<std::string> container, string ID) {
 	string first_name;
 	string last_name;
 	string department;
@@ -212,7 +212,7 @@ void menu_admin(Admin& A, sqlite3* DB) {
 			break;
 		case 'a':
 			// Call Add/Remove Courses (system)
-			A.addRemoveCourse();
+			A.addRemoveCourse(DB);
 			break;
 		case 'x':
 			cout << "Logging out..." << endl;
@@ -239,7 +239,7 @@ void menu_student(Student& S, sqlite3* DB) {
 			break;
 		case 'a':
 			// Call Add/Remove Courses (schedule)
-			Schedule = S.addDropCourse(DB, Schedule);  
+			Schedule = S.addDropCourse(DB, Schedule);
 			break;
 		case 'p':
 			S.printSchedule(Schedule);
@@ -268,7 +268,7 @@ void menu_instructor(Instructor& I, sqlite3* DB) {
 			break;
 		case 'r':
 			// Call Course Roster
-			I.printRoster();
+			I.printRoster(DB);
 			break;
 		case 'x':
 			cout << "Logging out..." << endl;
