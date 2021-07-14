@@ -16,7 +16,7 @@ void User::searchCourse(sqlite3* DB)
 	string input;
 	string Q1;
 	string Q2;
-	string exit;
+	int exit = 0;
 
 	int loop = 0;
 	char choice;
@@ -34,24 +34,60 @@ void User::searchCourse(sqlite3* DB)
 			Q1 = "SELECT * FROM COURSE WHERE CRN = ";
 			Q2 = Q1 + input;
 			exit = sqlite3_exec(DB, Q2.c_str(), callback, NULL, &messageError);
+
+			if (exit != SQLITE_OK)
+			{
+				std::cerr << "Error: Invalid CRN" << std::endl;
+				sqlite3_free(messageError);
+			}
+			else {
+				std::cout << "Search successful!" << std::endl;
+			}
 		}
 		else if (choice == 't') {	// -------------------------------------------------------WORKING (SEARCH BY TITLE)
 			cout << "Enter Title: "; cin.ignore();  getline(cin, input);
 			Q1 = "SELECT * FROM COURSE WHERE TITLE = ";
-			Q2 = Q1 + '"' + input + '"'; 
+			Q2 = Q1 + '"' + input + '"';
 			exit = sqlite3_exec(DB, Q2.c_str(), callback, NULL, &messageError);
+
+			if (exit != SQLITE_OK)
+			{
+				std::cerr << "Error: Invalid Title" << std::endl;
+				sqlite3_free(messageError);
+			}
+			else {
+				std::cout << "Search successful!" << std::endl;
+			}
 		}
 		else if (choice == 'd') {	// -------------------------------------------------------WORKING (SEARCH BY DEPARTMENT)
 			cout << "Enter Department: "; cin >> input;
 			Q1 = "SELECT * FROM COURSE WHERE DEPARTMENT = ";
 			Q2 = Q1 + '"' + input + '"';
 			exit = sqlite3_exec(DB, Q2.c_str(), callback, NULL, &messageError);
+
+			if (exit != SQLITE_OK)
+			{
+				std::cerr << "Error: Invalid Department" << std::endl;
+				sqlite3_free(messageError);
+			}
+			else {
+				std::cout << "Search successful!" << std::endl;
+			}
 		}
 		else if (choice == 'a') {	// -------------------------------------------------------WORKING (PRINT ALL COURSES)
 			Q1 = "SELECT * FROM COURSE;";
 			exit = sqlite3_exec(DB, Q1.c_str(), callback, NULL, &messageError);
+
+			if (exit != SQLITE_OK)
+			{
+				std::cerr << "Error!" << std::endl;
+				sqlite3_free(messageError);
+			}
+			else {
+				std::cout << "Success!" << std::endl;
+			}
 		}
-		else if (choice == 'x'){
+		else if (choice == 'x') {
 			loop = 1;
 		}
 	}
