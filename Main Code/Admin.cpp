@@ -52,7 +52,7 @@ void Admin::addRemoveCourse(sqlite3* DB)								// *** NEED FOR ASSIGNMENT 5 ***
 
 		//Create course database entry
 		string Q1 = "INSERT INTO COURSE (CRN, TITLE, DEPARTMENT, LECTURE_DAYS, LECTURE_START, LECTURE_END, LAB_DAYS, LAB_START, LAB_END, SEMESTER, YEAR, CREDITS) "\
-			"VALUES(" + CRN +  ",'" + Title + "','" + Dept + "','" + Lec + "', " + Lec_S + "," + Lec_E + ",'" + Lab + "'," + Lab_S + "," + Lab_E + ",'" + Sem + "'," + Year + "," + Credits + "); ";
+			"VALUES(" + CRN + ",'" + Title + "','" + Dept + "','" + Lec + "', " + Lec_S + "," + Lec_E + ",'" + Lab + "'," + Lab_S + "," + Lab_E + ",'" + Sem + "'," + Year + "," + Credits + "); ";
 		int exit = sqlite3_exec(DB, Q1.c_str(), callback, NULL, &messageError);
 
 		string printS1 = "SELECT * FROM COURSE WHERE CRN = ";
@@ -61,11 +61,11 @@ void Admin::addRemoveCourse(sqlite3* DB)								// *** NEED FOR ASSIGNMENT 5 ***
 
 		if (exit != SQLITE_OK)
 		{
-			std::cerr << "Error" << std::endl;
+			std::cerr << "Error inserting course" << std::endl;
 			sqlite3_free(messageError);
 		}
 		else {
-			std::cout << "Successful" << std::endl;
+			std::cout << "Insert successful!" << std::endl;
 		}
 
 
@@ -82,7 +82,7 @@ void Admin::addRemoveCourse(sqlite3* DB)								// *** NEED FOR ASSIGNMENT 5 ***
 			sqlite3_free(messageError);
 		}
 		else {
-			std::cout << "Records removed Successfully!" << std::endl;
+			std::cout << "Records removed successfully!" << std::endl;
 		}
 	}
 }
