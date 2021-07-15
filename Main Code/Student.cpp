@@ -40,7 +40,7 @@ std::vector<Course> Student::addDropCourse(sqlite3* DB, vector<Course> Schedule)
 		for (int i = 0; i < mainCourseList.size(); i++) {
 			if (mainCourseList[i].getCode() == CRN_C) {
 				Schedule.push_back(mainCourseList[i]);
-				cout << mainCourseList[i];
+				cout << mainCourseList[i].getCourse() << " added to schedule" << endl;
 			}
 
 			else if((mainCourseList[i].getCode() != CRN_C) && (i = mainCourseList.size() - 1)) {
@@ -51,9 +51,9 @@ std::vector<Course> Student::addDropCourse(sqlite3* DB, vector<Course> Schedule)
 	else if (choice == 'b') {
 		cout << "Enter CRN of class you would like to remove: "; cin >> CRN_C;
 		for (int i = 0; i < Schedule.size(); i++) {
-			if (mainCourseList[i].getCode() == CRN_C) {
-				Schedule.erase(next(Schedule.begin(), i));
-				cout << mainCourseList[i];
+			if (Schedule[i].getCode() == CRN_C) {
+				cout << Schedule[i].getCourse() << " removed from schedule" << endl;
+				Schedule.erase(Schedule.begin() + i);  
 			}
 
 			else if ((mainCourseList[i].getCode() != CRN_C) && (i = mainCourseList.size() - 1)) {
