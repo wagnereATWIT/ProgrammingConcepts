@@ -10,6 +10,7 @@ User::User(string fName, string lName, int ID)
 	cout << "Constructor called for User" << endl;
 }
 
+//Menu by Andy, database commands and error if/else statements by Kaycee
 void User::searchCourse(sqlite3* DB)
 {
 	char* messageError;
