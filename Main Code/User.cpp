@@ -50,7 +50,7 @@ void User::searchCourse(sqlite3* DB)
 			Q2 = Q1 + '"' + input + '"';
 			exit = sqlite3_exec(DB, Q2.c_str(), callback, NULL, &messageError);
 
-			if (exit != SQLITE_OK)
+			if (exit != SQLITE_OK) //--------------------------Currently always prints successful even if nothing prints
 			{
 				std::cerr << "Error: Invalid Title" << std::endl;
 				sqlite3_free(messageError);
@@ -65,7 +65,7 @@ void User::searchCourse(sqlite3* DB)
 			Q2 = Q1 + '"' + input + '"';
 			exit = sqlite3_exec(DB, Q2.c_str(), callback, NULL, &messageError);
 
-			if (exit != SQLITE_OK)
+			if (exit != SQLITE_OK) //--------------------------Currently always prints successful even if nothing prints
 			{
 				std::cerr << "Error: Invalid Department" << std::endl;
 				sqlite3_free(messageError);
