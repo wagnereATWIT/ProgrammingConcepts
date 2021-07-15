@@ -13,6 +13,8 @@
 
 using namespace std;
 
+//Menu and functions by Andy
+
 string login(sqlite3*, std::vector<std::string>);
 
 void menu_instructor(Instructor &I, sqlite3*);
