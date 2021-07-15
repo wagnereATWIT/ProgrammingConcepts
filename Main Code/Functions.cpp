@@ -28,6 +28,7 @@ int callback_store(void* data, int argc, char** argv, char** azColName) {
 	return 0;
 }
 
+//Database commands by Kaycee, function set ups by Andy
 void StudentDB(sqlite3* DB) {
 
 	char* messageError;
