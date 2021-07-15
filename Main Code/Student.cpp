@@ -24,8 +24,8 @@ string Student::toString() const
 
 std::vector<Course> Student::addDropCourse(sqlite3* DB, vector<Course> Schedule)
 {
-	std::vector<std::string> container;
-//	vector<Course> Schedule;
+	vector<string> container;
+	//	vector<Course> Schedule;
 	vector<Course> mainCourseList = create_courselist(container, DB);
 	// Function for putting values in vector
 	char choice;
@@ -34,27 +34,35 @@ std::vector<Course> Student::addDropCourse(sqlite3* DB, vector<Course> Schedule)
 	cout << "Would you like to add or drop a course?: " << endl
 		<< "a - add" << endl
 		<< "b - drop" << endl;
-	cin >> choice; 
+	cin >> choice;
 	if (choice == 'a') {
 		cout << "Enter CRN of class you would like to add: "; cin >> CRN_C;
 		for (int i = 0; i < mainCourseList.size(); i++) {
 			if (mainCourseList[i].getCode() == CRN_C) {
 				Schedule.push_back(mainCourseList[i]);
-				cout << mainCourseList[i]; 
+				cout << mainCourseList[i];
+			}
+
+			else if((mainCourseList[i].getCode() != CRN_C) && (i = mainCourseList.size() - 1)) {
+				cout << "Error: Invalid CRN" << endl;
 			}
 		}
 	}
-	else if (choice == 'b'){
+	else if (choice == 'b') {
 		cout << "Enter CRN of class you would like to remove: "; cin >> CRN_C;
 		for (int i = 0; i < Schedule.size(); i++) {
 			if (mainCourseList[i].getCode() == CRN_C) {
-				Schedule.erase(std::next(Schedule.begin(), i)); 
-				cout << mainCourseList[i]; 
+				Schedule.erase(next(Schedule.begin(), i));
+				cout << mainCourseList[i];
+			}
+
+			else if ((mainCourseList[i].getCode() != CRN_C) && (i = mainCourseList.size() - 1)) {
+				cout << "Error: Invalid CRN" << endl; //Currently not working
 			}
 		}
 	}
 
-	return Schedule; 
+	return Schedule;
 }
 
 void Student::printSchedule(std::vector<Course> Schedule) const
