@@ -24,6 +24,7 @@ string Instructor::toString() const
 
 void Instructor::printRoster(sqlite3* DB)
 {
+	char* messageError;
 	string department;
 	cout << endl << "Enter your four-letter department name: ";
 	cin >> department;
@@ -31,7 +32,15 @@ void Instructor::printRoster(sqlite3* DB)
 	string flagProf_1 = "SELECT COURSE.TITLE, COURSE.LECTURE_DAYS, COURSE.LECTURE_START, COURSE.LECTURE_END, COURSE.LAB_DAYS, COURSE.LAB_START, COURSE.LAB_END FROM COURSE WHERE COURSE.DEPARTMENT = ";
 	string flagProf = flagProf_1 + '"' + department + '"';
 	cout << endl << "Roster: " << endl;
-	sqlite3_exec(DB, flagProf.c_str(), callback, NULL, NULL);
+	int exit = sqlite3_exec(DB, flagProf.c_str(), callback, NULL, &messageError);
+	if (exit != SQLITE_OK) //-------------------------------------------- Currently always prints successful even if nothing prints
+	{
+		std::cerr << "Error: Invalid Department" << std::endl;
+		sqlite3_free(messageError);
+	}
+	else {
+		std::cout << "Roster print successful!" << std::endl;
+	}
 }
 
 void Instructor::printSchedule() const
