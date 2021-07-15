@@ -22,6 +22,7 @@ string Instructor::toString() const
 	return output.str();
 }
 
+//Function by Kaycee
 void Instructor::printRoster(sqlite3* DB)
 {
 	char* messageError;
