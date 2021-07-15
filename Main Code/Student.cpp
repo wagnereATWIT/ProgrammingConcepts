@@ -22,6 +22,7 @@ string Student::toString() const
 	return output.str();
 }
 
+//Function by Andy
 std::vector<Course> Student::addDropCourse(sqlite3* DB, vector<Course> Schedule)
 {
 	vector<string> container;
