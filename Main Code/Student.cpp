@@ -68,6 +68,7 @@ std::vector<Course> Student::addDropCourse(sqlite3* DB, vector<Course> Schedule)
 void Student::printSchedule(std::vector<Course> Schedule) const
 {
 	cout << "Print schedule function called" << endl;
+	cout << "--------------------------------" << endl;
 	for (int i = 0; i < Schedule.size(); i++) {
 		cout << Schedule[i];
 		cout << "--------------------------------" << endl;
