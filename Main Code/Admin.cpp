@@ -22,7 +22,8 @@ string Admin::toString() const
 	return output.str();
 }
 
-void Admin::addRemoveCourse(sqlite3* DB)								// *** NEED FOR ASSIGNMENT 5 ***
+//Function by Kaycee
+void Admin::addRemoveCourse(sqlite3* DB)
 {
 	char* messageError;
 	char choice;
